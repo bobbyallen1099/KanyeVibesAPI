@@ -8,10 +8,9 @@ use App\Services\KanyeAPIService;
 
 class KayneController extends Controller
 {
-    public function home(KanyeAPIService $kanyeApiService): View
+    public function home(): View
     {
-        $quotes = $kanyeApiService->getQuotes();
-        return view('home', ['quotes' => $quotes]);
+        return view('home');
     }
 
     public function quotes(Request $request, KanyeAPIService $kanyeApiService)
