@@ -12,8 +12,11 @@ class KanyeAPIService
     public const CACHE_KEY = 'kanye_quotes';
     public const CACHE_DURATION = 60; // 1 Minute
 
-    public function getQuotes(): array
+    public function getQuotes($forceRefresh = false): array
     {
+        if($forceRefresh) {
+            Cache::delete($this::CACHE_KEY);
+        }
         return Cache::remember($this::CACHE_KEY, $this::CACHE_DURATION, function() {
             return $this->fetchQuotes();
         });

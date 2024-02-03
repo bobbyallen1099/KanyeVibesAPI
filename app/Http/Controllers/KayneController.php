@@ -13,4 +13,10 @@ class KayneController extends Controller
         $quotes = $kanyeApiService->getQuotes();
         return view('home', ['quotes' => $quotes]);
     }
+
+    public function quotes(Request $request, KanyeAPIService $kanyeApiService)
+    {
+        $forceRefresh = $request->get('refresh', false);
+        return json_encode($kanyeApiService->getQuotes($forceRefresh));
+    }
 }
